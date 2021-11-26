@@ -1,0 +1,11 @@
+.margin {
+    margin-right: 10px
+}
+
+@media only screen and (max-width: 988px) {
+    .contain {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
