@@ -1,11 +1,93 @@
-.margin {
-    margin-right: 10px
+:root {
+    --baseblue: rgb(75, 75, 255);
 }
 
-@media only screen and (max-width: 988px) {
-    .contain {
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.nav {
+    padding: 5px;
+    background-color: #eee;
+}
+
+.nav ul {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+}
+
+.brand {
+    cursor: pointer;
+    font-size: 25px !important;
+    color: var(--baseblue);
+}
+
+nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.nav ul li:hover{
+    border-bottom: 2px solid var(--baseblue) ;
+}
+
+.nav ul li {
+    cursor: pointer;
+    color: var(--baseblue);
+    margin-right: 20px;
+    list-style: none;
+    font-size: 20px;
+    font-weight: 4900px;
+}
+
+.btn {
+    cursor: pointer;
+    margin-right: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn button:hover:first-child {
+    color: white;
+    background-color: var(--baseblue);
+}
+
+.btn button:nth-child(2) {
+    background-color: var(--baseblue);
+    color: white;
+}
+
+.btn button:hover:nth-child(2) {
+    border: 2px solid var(--baseblue);
+    background-color: transparent;
+    color: var(--baseblue);
+}
+
+.btnb:hover > .btnb {
+    background-color: transparent;
+    color: white;
+}
+
+.btn button {
+    border-radius: 25px;
+    color: var(--baseblue);
+    border: 2px solid var(--baseblue);
+    margin-left: 6px;
+    padding: 10px 30px;
+}
+
+@media only screen and (max-width: 788px) {
+    .brand {
+        text-align: center;
+    }
+
+    nav {
         display: flex;
-        align-items: center;
-        justify-content: center;
+        flex-direction: column;
     }
 }
