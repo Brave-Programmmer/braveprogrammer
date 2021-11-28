@@ -5,7 +5,10 @@ app = Flask(__name__)
 client = pymongo.MongoClient('mongodb://localhost:27017/')
 db = client.pro_programmer
 collection = db.user
-
+# collection.insert_one({
+#     'name':'Mohit',
+#     'Age':12
+# })
 @app.route("/")
 def home():
     return render_template('index.html')
