@@ -13,16 +13,13 @@
 <body>
     <div class="nav">
         <nav>
-            <h2 class="brand">Code My Passion</h2>
-            <ul>
-                <li>Home</li>
-                <li>About</li>
-                <li>Blog</li>
-                <li>Video</li>
-            </ul>
+            <div class="head">
+                <h2 class="brand">Brave Programmer</h2>
+            </div>
         </nav>
     </div>
     <div class="loginform">
+        <h1 class="sign">Sign In</h1>
         <form action="/api/v1/login" method="post">
             <input type="text" name="username" id="username" placeholder="Enter Username">
             <input type="text" name="password" id="password" placeholder="Enter Password">
@@ -30,5 +27,5 @@
         </form>
     </div>
 </body>
-
+    <!-- <script src="{{ url_for('static', filename='app.js') }}"></script> -->
 </html>

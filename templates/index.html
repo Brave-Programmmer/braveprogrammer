@@ -12,19 +12,35 @@
 <body>
     <div class="nav">
         <nav>
-            <h2 class="brand">Brave Programmer</h2>
-            <ul>
-                <li>Home</li>
-                <li>About</li>
-                <li>Blog</li>
-                <li>Video</li>
-            </ul>
-            <div class="btn">
-                <button class="btna" onclick="location.href='/login';">Login</button>
-                <button class="btnb" onclick="location.href='/signup';">Sign Up</button>
+            <div class="head">
+                <h2 class="brand">Brave Programmer</h2>
+                <div class="burger">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+            </div>
+            <div class="navnext">
+                <ul>
+                    <li>Home</li>
+                    <li>About</li>
+                    <li>Blog</li>
+                    <li>Video</li>
+                </ul>
+                <div class="btn">
+                    <button class="btna" onclick="location.href='/login';">Login</button>
+                    <button class="btnb" onclick="location.href='/signup';">Sign Up</button>
+                </div>
             </div>
         </nav>
     </div>
+    <section>
+        <h1>s</h1>
+    </section>
+    <noscript>
+        <h1>Please enable javascript</h1>
+    </noscript>
 </body>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
 
 </html>

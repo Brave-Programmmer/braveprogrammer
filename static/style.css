@@ -8,22 +8,66 @@ body {
 }
 
 .nav {
+    box-shadow: 5px 5px 13px 3px #c2bcc9;
     padding: 5px;
     background-color: #eee;
 }
 
-.nav ul {
-    padding: 0;
+.nav .navnext ul {
+padding: 0;
     align-items: center;
     justify-content: center;
     display: flex;
+    flex-direction: row ;
+}
+
+.head {
+    display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
 }
 
 .brand {
+    text-shadow: 2px 2px 20px #646464;
+    margin-left: 4px;
     cursor: pointer;
     font-size: 25px !important;
     color: var(--baseblue);
+}
+
+.burger {
+    display: none;
+}
+
+.navnext {
+    display: flex;
+    transition: all 1.2s ease;
+}
+
+.line {
+    box-shadow: -5px -5px 19px black;
+}
+
+.line:nth-child(3) {
+    width: 24px;
+    margin: 4px;
+    height: 3px;
+    background-color: var(--baseblue);
+}
+
+.line:nth-child(2) {
+    width: 18px;
+    margin: 4px;
+    height: 3px;
+    background-color: var(--baseblue);
+}
+
+.line:nth-child(1) {
+    width: 14px;
+    margin: 4px;
+    height: 3px;
+    background-color: var(--baseblue);
 }
 
 nav {
@@ -32,11 +76,11 @@ nav {
     justify-content: space-between;
 }
 
-.nav ul li:hover{
-    border-bottom: 2px solid var(--baseblue) ;
+.nav .navnext ul li:hover {
+    border-bottom: 2px solid var(--baseblue);
 }
 
-.nav ul li {
+.nav .navnext ul li {
     cursor: pointer;
     color: var(--baseblue);
     margin-right: 20px;
@@ -69,7 +113,7 @@ nav {
     color: var(--baseblue);
 }
 
-.btnb:hover > .btnb {
+.btnb:hover>.btnb {
     background-color: transparent;
     color: white;
 }
@@ -82,9 +126,33 @@ nav {
     padding: 10px 30px;
 }
 
+.none {
+    opacity: 100% !important;
+    height: 110px !important;
+}
+
 @media only screen and (max-width: 788px) {
     .brand {
         text-align: center;
+    }
+
+    .burger {
+        /* display: flex;
+        flex-direction: column-reverse; */
+        /* margin: 0; */
+        display: block;
+        transform: rotate(180deg);
+    }
+
+    .burger:active>nav .navnext {
+        display: block;
+    }
+
+    nav .navnext {
+        opacity: 0%;
+        height: 0;
+        display: flex;
+        flex-direction: column;
     }
 
     nav {
