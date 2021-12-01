@@ -18,11 +18,17 @@ def home():
 
 @app.route('/api/v1/login', methods=['GET', 'POST'])
 def onlogin():
-    return
-        # print(request)
-        # if request.method == 'POST':
-        #     find = collection.find_one(
-        #         {'username': request.username, 'password': request.password})
+    # print(request.form.get('username'))
+        if request.method == 'POST':
+            find = collection.find_one({'username': request.form.get('username'), 'password': request.form.get('password')})
+            if find:
+                 print('succes')
+            else:
+                 print('err')           
+        else:
+            print('no')
+        return render_template('index.html')
+    
 
     
 @app.route("/login")
