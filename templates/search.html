@@ -5,8 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='searchblog.css') }}">
+    <title>Document</title>
+
 </head>
 
 <body>
@@ -27,10 +29,9 @@
                     <li>Blog</li>
                     <li>Video</li>
                 </ul>
-                
+
                 <div class="btn">
                     <form action="/search" method="POST" class="searchform">
-                      
                         <input type="text" name="searchtext" id="searchtext" placeholder="Search Blog">
                         <button class="btnb">Search</button>
                     </form>
@@ -38,12 +39,21 @@
             </div>
         </nav>
     </div>
-    <section>
-        <h1>s</h1>
+    <section class="blogs">
+        {% if noblog == True %}
+        <h1>No Blog</h1>
+        {% else %}
+        <div class="blog">
+            {% for document in blog %}
+                <div class="contain">
+                    <img src="{{ url_for('static', filename='searchblog.jpg') }}" alt="blogimg" srcset="" class="blogimg">
+                    <h2>{{document.title}}</h2>    
+                    <h4 style="margin: 0px;margin-bottom: 20px;">Author:-{{document.author}}</h4>    
+                </div>
+            {% endfor %}
+        </div>
+        {% endif %}
     </section>
-    <noscript>
-        <h1>Please enable javascript</h1>
-    </noscript>
 </body>
 <script src="{{ url_for('static', filename='app.js') }}"></script>
 

@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 client = pymongo.MongoClient('mongodb://localhost:27017/')
 db = client.pro_programmer
-collection = db.user
+collection = db.Blog
 # collection.insert_one({
 #     'name':'Mohit',
 #     'Age':12
@@ -16,21 +16,22 @@ def home():
     return render_template('index.html')
 
 
-@app.route('/api/v1/login', methods=['GET', 'POST'])
-def onlogin():
+@app.route('/search', methods=['GET', 'POST'])
+def onsearch():
     # print(request.form.get('username'))
-        if request.method == 'POST':
-            find = collection.find_one({'username': request.form.get('username'), 'password': request.form.get('password')})
-            if find:
-                 print('succes')
-            else:
-                 print('err')           
+    # print(request.method)
+    # print(request.form.get('searchtext'))
+    if request.method == 'POST':
+        find = db.Blog.find({"title": request.form.get('searchtext')})
+        if find:
+            return render_template('search.html', noblog = False, blog = find)
         else:
-            print('no')
-        return render_template('index.html')
-    
+            return render_template('search.html', noblog = True)
 
-    
+    else:
+        print('no')
+
+
 @app.route("/login")
 def login():
     return render_template('login.html')

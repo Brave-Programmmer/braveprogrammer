@@ -14,11 +14,11 @@ body {
 }
 
 .nav .navnext ul {
-padding: 0;
+    padding: 0;
     align-items: center;
     justify-content: center;
     display: flex;
-    flex-direction: row ;
+    flex-direction: row;
 }
 
 .head {
@@ -128,10 +128,39 @@ nav {
 
 .none {
     opacity: 100% !important;
-    height: 110px !important;
+    height: 190px !important;
 }
 
-@media only screen and (max-width: 788px) {
+.searchform {
+    display: flex;
+    flex-direction: row;
+}
+
+#searchtext {
+    text-align: center;
+    border-radius: 20px;
+    width: auto;
+    height: 18px;
+    outline: none;
+    border: 1px solid blue;
+    align-self: center;
+    padding: 8px;
+    font-size: 18px;
+
+}
+
+@media only screen and (max-width: 947px) {
+    .btn button {
+        margin-left: 0;
+    }
+    #searchtext{
+        margin-bottom: 18px;
+    }
+    .searchform {
+        display: flex;
+        flex-direction: column;
+    }
+
     .brand {
         text-align: center;
     }
