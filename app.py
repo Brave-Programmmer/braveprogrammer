@@ -5,10 +5,6 @@ app = Flask(__name__)
 client = pymongo.MongoClient('mongodb://localhost:27017/')
 db = client.pro_programmer
 collection = db.Blog
-# collection.insert_one({
-#     'name':'Mohit',
-#     'Age':12
-# })
 
 
 @app.route("/")
@@ -22,24 +18,29 @@ def onsearch():
     # print(request.method)
     # print(request.form.get('searchtext'))
     if request.method == 'POST':
-        find = db.Blog.find({"title": request.form.get('searchtext')})
+        find = db.Blog.find(
+            {"title": {"$regex": request.form.get('searchtext')}})
         if find:
-            return render_template('search.html', noblog = False, blog = find)
+            return render_template('search.html', noblog=False, blog=find)
         else:
-            return render_template('search.html', noblog = True)
+            return render_template('search.html', noblog=True)
 
     else:
         print('no')
 
 
-@app.route("/login")
-def login():
-    return render_template('login.html')
-
-
-@app.route("/signup")
-def signup():
-    return render_template('signup.html')
+@app.route("/blog/<string:slug>",methods=['GET'])
+def allblog(slug):
+    print(request.method)
+    if request.method == 'GET':
+        query = db.Blog.find({"slug":slug})
+        if query:
+            return render_template('slug.html', data = query, noSlug = False)
+        else:
+            return render_template('slug.html', noSlug = True)
+    else:
+        print('Invaild Request')
+        
 
 
 if __name__ == '__main__':

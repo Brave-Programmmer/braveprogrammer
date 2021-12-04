@@ -5,10 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='searchblog.css') }}">
     <title>Document</title>
-
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
 <body>
@@ -32,6 +30,7 @@
 
                 <div class="btn">
                     <form action="/search" method="POST" class="searchform">
+
                         <input type="text" name="searchtext" id="searchtext" placeholder="Search Blog">
                         <button class="btnb">Search</button>
                     </form>
@@ -39,25 +38,28 @@
             </div>
         </nav>
     </div>
-    <section class="blogs">
-        {% if noblog == True %}
-        <h1>No Blog</h1>
-        {% else %}
-        <div class="blog">
-            {% for document in blog %}
-            <div class="contain" onclick="location.href = '/blog/{{document.slug}}';">
-                <img src="{{ url_for('static', filename='searchblog.jpg') }}" alt="blogimg" srcset="" class="blogimg">
-                <div class="tanddes">
-                    <h2>{{document.title}}</h2>
-                    <p style="height: fit-content;width: fit-content;">{{document.contain[:60] + (document.contain[60:]
-                        and '..')}}</p>
-                </div>
-                <h4>Author:-{{document.author}}</h4>
-            </div>
-            {% endfor %}
+    {% if noSlug == True %}
+    <h1>No Blog</h1>
+    {% else %}
+    <section class="blog">
+        <div class="container">
+            {% for doc in data %}
+            <h1>{{doc.title}}</h1>
+            <h4 style="
+    margin: 0;
+    align-items: center;
+    text-align: center;
+    align-self: center;
+">- By{{doc.author}}</h4>
+            {%endfor%}
         </div>
-        {% endif %}
     </section>
+    {% endif %}
+
+
+    <noscript>
+        <h1>Please enable javascript</h1>
+    </noscript>
 </body>
 <script src="{{ url_for('static', filename='app.js') }}"></script>
 

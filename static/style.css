@@ -189,3 +189,20 @@ nav {
         flex-direction: column;
     }
 }
+
+
+
+
+
+
+/* slug.htmlcss */
+.container h1{
+    margin: 20px;
+    color: var(--baseblue);
+}
+.container{
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
