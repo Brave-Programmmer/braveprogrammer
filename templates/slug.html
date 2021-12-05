@@ -22,10 +22,10 @@
             </div>
             <div class="navnext">
                 <ul>
-                    <li>Home</li>
-                    <li>About</li>
-                    <li>Blog</li>
-                    <li>Video</li>
+                    <li onclick="location.href = '/home'">Home</li>
+                    <li onclick="location.href = '/'">About</li>
+                    <li onclick="location.href = '/blog'">Blog</li>
+                    <li onclick="location.href = '/'">Video</li>
                 </ul>
 
                 <div class="btn">
@@ -44,19 +44,17 @@
     <section class="blog">
         <div class="container">
             {% for doc in data %}
-            <h1>{{doc.title}}</h1>
-            <h4 style="
-    margin: 0;
-    align-items: center;
-    text-align: center;
-    align-self: center;
-">- By{{doc.author}}</h4>
+            <div class="title">
+                <h1>{{doc.title}}</h1>
+                <h4>
+                    - By{{doc.author}}
+                </h4>
+            </div>
+            <p>{{doc.contain}}</p>
             {%endfor%}
         </div>
     </section>
     {% endif %}
-
-
     <noscript>
         <h1>Please enable javascript</h1>
     </noscript>

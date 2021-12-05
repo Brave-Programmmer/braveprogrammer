@@ -196,13 +196,25 @@ nav {
 
 
 /* slug.htmlcss */
-.container h1{
+.container .title h1{
+    margin-right: 5px !important;
+    margin-bottom: 0px !important;
     margin: 20px;
     color: var(--baseblue);
+}
+.container .title h4{
+    text-align: center;
+    display: flex;
+    align-items: center;
+    margin-bottom: 0px !important;
+    color: var(--baseblue);
+}
+.title{
+    display: flex;
 }
 .container{
     margin: auto;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
 }
