@@ -45,7 +45,7 @@
         {% else %}
         <div class="blog">
             {% for document in blog %}
-                {% if not document.title %}
+                {% if document.title %}
                 <div class="contain" onclick="location.href = '/blog/{{document.slug}}';">
                     <img src="{{ url_for('static', filename='searchblog.jpg') }}" alt="blogimg" srcset="" class="blogimg">
                     <div class="tanddes">
