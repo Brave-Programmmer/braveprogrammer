@@ -51,12 +51,15 @@ def allblog():
         req2 = request.args.get('to')
         if req1 and req2:
             findallblog = db.Blog.find().skip(int(req1)).limit(int(req2))
+            numblog = db.Blog.count_documents({})
             if findallblog:
                 next_url = int(req1) + 4
                 pre_url = int(req2) + 4
                 next_url1 = int(req1) - 4
                 pre_url1 = int(req2) - 4
-                return render_template('search.html', noblog=False, blog=findallblog, next_url=next_url, pre_url = pre_url, next_url1=next_url1, pre_url1 = pre_url1)
+                return render_template('search.html', noblog=False, 
+                numblog = numblog
+                blog=findallblog, next_url=next_url, pre_url = pre_url, next_url1=next_url1, pre_url1 = pre_url1)
             else:
                 return render_template('search.html', noblog=True)
         else:
