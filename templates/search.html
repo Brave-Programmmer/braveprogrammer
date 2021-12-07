@@ -45,33 +45,30 @@
         {% else %}
         <div class="blog">
             {% for document in blog %}
-                {% if not document.title %}
+
                 <div class="contain" onclick="location.href = '/blog/{{document.slug}}';">
                     <img src="{{ url_for('static', filename='searchblog.jpg') }}" alt="blogimg" srcset="" class="blogimg">
                     <div class="tanddes">
                         <h2>{{document.title}}</h2>
                         <p style="height: fit-content;width: fit-content;">
-                            {{document.contain[:60] + (document.contain[60:]
-                            and '..')}}
+                            {{Markup(document.contain[:60] + (document.contain[60:]
+                            and '..'))}}
                         </p>
                     </div>
                     <h4>Author:-{{document.author}}</h4>
-                </div>                
-                {% else %}
-                    <h1>No Blog</h1>
-                {% endif %}
+                </div>
             {% endfor %}
         </div>
         {% endif %}
     </section>
     <div class="loadmore">
         <div class="next">
-            <button class="pagebtn" onclick="location.href = '/blog?from={{next_url1}}&to={{pre_url1}}'">
+            <button class="pagebtn" onclick="location.href = '/blog?{{next_url}}{{pre_url}}'">
                 &lArr; Previous
             </button>
         </div>
         <div class="before">
-            <button class="pagebtn" onclick="location.href = '/blog?from={{next_url}}&to={{pre_url}}'">
+            <button class="pagebtn" onclick="location.href = '/blog?{{next_url}}{{pre_url}}'">
                  Next &rArr;
            </button>
         </div>
