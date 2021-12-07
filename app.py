@@ -47,7 +47,6 @@ def blog(slug):
 @app.route("/blog", methods=['GET'])
 def allblog():
     if request.method == 'GET':
-<<<<<<< HEAD
         from_arg = int(request.args.get('from'))
         to_arg = int(request.args.get('to'))
         if str(from_arg).isnumeric() and str(to_arg).isnumeric():
@@ -76,21 +75,6 @@ def allblog():
                     next_url = 'from=' + str(int(from_arg) + 4) + '&to=' + str(int(to_arg) + 4)
                     pre_url = 'from=' + str(int(from_arg) - 4) + '&to=' + str(int(to_arg) - 4)
 
-=======
-        req1 = request.args.get('from')
-        req2 = request.args.get('to')
-        if req1 and req2:
-            findallblog = db.Blog.find().skip(int(req1)).limit(int(req2))
-            numblog = db.Blog.count_documents({})
-            if findallblog:
-                next_url = int(req1) + 4
-                pre_url = int(req2) + 4
-                next_url1 = int(req1) - 4
-                pre_url1 = int(req2) - 4
-                return render_template('search.html', noblog=False, 
-                numblog = numblog
-                blog=findallblog, next_url=next_url, pre_url = pre_url, next_url1=next_url1, pre_url1 = pre_url1)
->>>>>>> 3a32f1d4a573d786d84387b581a3eb6a3ac6b9f3
             else:
                 return render_template('search.html', noblog=True)
         else:
