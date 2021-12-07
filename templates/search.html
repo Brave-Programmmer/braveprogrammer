@@ -45,7 +45,11 @@
         {% else %}
         <div class="blog">
             {% for document in blog %}
+<<<<<<< HEAD
 
+=======
+                {% if document.title %}
+>>>>>>> 3a32f1d4a573d786d84387b581a3eb6a3ac6b9f3
                 <div class="contain" onclick="location.href = '/blog/{{document.slug}}';">
                     <img src="{{ url_for('static', filename='searchblog.jpg') }}" alt="blogimg" srcset="" class="blogimg">
                     <div class="tanddes">
