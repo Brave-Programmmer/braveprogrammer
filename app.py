@@ -54,7 +54,7 @@ def allblog():
         findallblog = db.Blog.find({}).skip((pageno * pageno)-1).limit(4)
         for doc in findallblog:
             print(doc)
-        if pageno <= nopages:
+        if pageno = nopages or pagno < nopages:
             return render_template('search.html')
         else:
             return print('no page')
