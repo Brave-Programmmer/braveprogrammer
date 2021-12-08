@@ -40,39 +40,16 @@
         </nav>
     </div>
     <section class="blogs">
-        {% if noblog == True %}
-        <h1>No Blog</h1>
-        {% else %}
-        <div class="blog">
-            {% for document in blog %}
-<<<<<<< HEAD
-
-=======
-                {% if document.title %}
->>>>>>> 3a32f1d4a573d786d84387b581a3eb6a3ac6b9f3
-                <div class="contain" onclick="location.href = '/blog/{{document.slug}}';">
-                    <img src="{{ url_for('static', filename='searchblog.jpg') }}" alt="blogimg" srcset="" class="blogimg">
-                    <div class="tanddes">
-                        <h2>{{document.title}}</h2>
-                        <p style="height: fit-content;width: fit-content;">
-                            {{Markup(document.contain[:60] + (document.contain[60:]
-                            and '..'))}}
-                        </p>
-                    </div>
-                    <h4>Author:-{{document.author}}</h4>
-                </div>
-            {% endfor %}
-        </div>
-        {% endif %}
+            {{numposts}}
     </section>
     <div class="loadmore">
         <div class="next">
-            <button class="pagebtn" onclick="location.href = '/blog?{{next_url}}{{pre_url}}'">
+            <button class="pagebtn" onclick="location.href = '/blog{{prev}}'">
                 &lArr; Previous
             </button>
         </div>
         <div class="before">
-            <button class="pagebtn" onclick="location.href = '/blog?{{next_url}}{{pre_url}}'">
+            <button class="pagebtn" onclick="location.href = '/blog{{next}}'">
                  Next &rArr;
            </button>
         </div>
