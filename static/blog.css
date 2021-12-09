@@ -1,3 +1,8 @@
+.blog{
+display:grid;
+grid-template-column: auto auto auto auto;
+
+}
 .card {
     display: flex;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
