@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='searchblog.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='blog.css') }}">
     <title>Document</title>
 
 </head>
@@ -40,7 +40,16 @@
         </nav>
     </div>
     <section class="blogs">
-            {{numposts}}
+        {% for doc in allblog %}
+        <div class="card">
+            <!-- style="width:25%" -->
+            <img src="{{ url_for('static', filename='searchblog.jpg') }}" alt="Avatar" >
+            <div class="container">
+                <h4><b>{{doc.title}}</b></h4> 
+                <p>{{Markup(doc.contain[:75] + (doc.contain[75:] and '..'))}}</p>            
+            </div>
+          </div>
+        {% endfor %}
     </section>
     <div class="loadmore">
         <div class="next">
@@ -50,8 +59,8 @@
         </div>
         <div class="before">
             <button class="pagebtn" onclick="location.href = '/blog{{next}}'">
-                 Next &rArr;
-           </button>
+                Next &rArr;
+            </button>
         </div>
     </div>
 </body>

@@ -49,13 +49,11 @@ def allblog():
     if request.method == 'GET':
         pageno = int(request.args.get('page'))#Page no 3
         noblogs = db.Blog.count_documents({})#no of blogs 16
-        nopages = math.ceil(pageno/noblogs)#no of pages 4
+        nopages = math.ceil(noblogs/4)#no of pages 4
         print(nopages)
-        findallblog = db.Blog.find({}).skip((pageno * pageno)-1).limit(4)
-        for doc in findallblog:
-            print(doc)
-        if pageno <= nopages:
-            return render_template('search.html')
+        findallblog = db.Blog.find({}).skip((pageno * pageno)).limit(4)
+        if pageno < nopages or pageno == nopages:
+            return render_template('search.html', allblog = findallblog, Markup= Markup)
         else:
             return print('no page')
 
