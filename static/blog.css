@@ -1,6 +1,13 @@
+.blog{
+display:grid;
+grid-template-column: auto auto auto auto;
+grid-gap:7px;
+
+}
 .card {
     box-shadow: rgb(100 100 111 / 20%) 0px 7px 29px 0px;
     display: flex;
+<<<<<<< HEAD
     background: white;
     width: 80%;
     flex-wrap: wrap;
@@ -65,3 +72,22 @@ h4:hover {
     font-weight: bold;
     background-color: white;
 }
+=======
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
+    transition: all 0.3s;
+    width: 100%;
+    padding: 10px;
+}
+.card img{
+    width: 20%;
+    height: 100%;
+    box-shadow: 0 4px 8px 0 rgb(0 0 0 / 60%);    
+}
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.container {
+    padding: 2px 16px;
+}
+>>>>>>> 1fb94d06a06b8c931052528c24a86f5eb93b9527
