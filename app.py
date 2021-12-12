@@ -2,19 +2,15 @@ from flask import Flask, render_template, request, Markup
 import math
 import pymongo
 
-
 app = Flask(__name__)
 client = pymongo.MongoClient('mongodb://localhost:27017/')
 db = client.pro_programmer
 collection = db.Blog
 
 # Routes
-
-
 @app.route("/")
 def home():
     return render_template('index.html')
-
 
 @app.route('/search', methods=['GET', 'POST'])
 def onsearch():
@@ -29,7 +25,6 @@ def onsearch():
     else:
         print('no')
 
-
 @app.route("/blog/<string:slug>", methods=['GET'])
 def blog(slug):
     print(request.method)
@@ -42,7 +37,6 @@ def blog(slug):
             return render_template('slug.html', noSlug=True)
     else:
         print('Invaild Request')
-
 
 @app.route("/blog", methods=['GET'])
 def allblog():
@@ -100,7 +94,6 @@ def allblog():
         #     return render_template('search.html', allblog=findallblog, Markup=Markup)
         # else:
         #     return print('no page')
-
 
 # Runing app
 if __name__ == '__main__':

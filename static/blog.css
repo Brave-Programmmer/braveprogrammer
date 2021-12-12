@@ -30,7 +30,9 @@
 .card_body {
     margin-left: 20px;
 }
-
+h4{
+    text-align: center;
+}
 h4:hover {
     cursor: pointer;
 }
@@ -58,10 +60,44 @@ h4:hover {
     background-color: var(--baseblue);
     border: 2px solid var(--baseblue);
 }
+
 .pagebtn1 {
     width: 144px;
     padding: 15px;
     font-size: 16px;
     font-weight: bold;
     background-color: white;
+}
+
+@media only screen and (max-width: 1042px) {
+    .blogs {
+        display: grid;
+        grid-template-columns: auto auto;
+    }
+    .card{
+        height: 310px;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+    .card_img{
+        height: 210px;
+        width: 100%;
+    }
+}
+@media only screen and (max-width: 546px) {
+    .blogs {
+        display: grid;
+        grid-template-columns: auto;
+    }
+    .card{
+        height: 310px;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+    .card_img{
+        height: 210px;
+        width: 100%;
+    }
 }

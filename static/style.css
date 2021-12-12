@@ -179,6 +179,7 @@ nav {
 
     nav .navnext {
         opacity: 0%;
+        display: none;
         height: 0;
         display: flex;
         flex-direction: column;
