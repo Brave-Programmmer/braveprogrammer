@@ -8,21 +8,72 @@ db = client.pro_programmer
 collection = db.Blog
 
 # Routes
+
+
 @app.route("/")
 def home():
-    return render_template('index.html')
+    find = db.Blog.find({}).limit(4)
+    return render_template('index.html', allblog = find)
+
 
 @app.route('/search', methods=['GET', 'POST'])
 def onsearch():
     if request.method == 'POST':
-        find = db.Blog.find({"contain": {"$regex": request.form.get('searchtext')}})
-        if find:
-            return render_template('search.html', noblog=False, allblog=find)
+        pageno = int(request.args.get('page'))  # Current Page eg 2
+        noblogs = db.Blog.count_documents({"contain": {"$regex": request.form.get('searchtext')}})  # Total no of blogs 16
+        nopages = math.ceil(noblogs/4)  # no of pages can be made 4
+        print(nopages)
+        # first page
+        if pageno == 1:
+            findallblog = db.Blog.find({"contain": {"$regex": request.form.get('searchtext')}}).skip((pageno * pageno) - 1).limit(4)
+            pre_url = "no"
+            next_url = f'/blog?page={pageno + 1}'
+            # print(next_url)
+            return render_template(
+                'search.html',
+                allblog=findallblog,
+                Markup=Markup,
+                pageno=pageno,
+                pre_url=pre_url,
+                next_url=next_url
+            )
+        elif pageno == nopages:
+            findallblog = db.Blog.find({}).skip((pageno * pageno) - 1).limit(4)
+            pre_url = f'/blog?page={pageno - 1}'
+            next_url = "no"
+            # print(next_url)
+            return render_template(
+                'search.html',
+                allblog=findallblog,
+                Markup=Markup,
+                pageno=pageno,
+                pre_url=pre_url,
+                next_url=next_url
+            )
         else:
-            return render_template('search.html', noblog=True)
+            findallblog = db.Blog.find({}).skip((pageno * pageno) - 1).limit(4)
+            pre_url = f'/blog?page={pageno - 1}'
+            next_url = f'/blog?page={pageno + 1}'
+            # print(next_url)
+            return render_template(
+                'search.html',
+                allblog=findallblog,
+                Markup=Markup,
+                pageno=pageno,
+                pre_url=pre_url,
+                next_url=next_url
+            )
 
-    else:
-        print('no')
+    # if request.method == 'POST':
+    #     find = db.Blog.find({"contain": {"$regex": request.form.get('searchtext')}})
+    #     if find:
+    #         return render_template('search.html', noblog=False, allblog=find)
+    #     else:
+    #         return render_template('search.html', noblog=True)
+
+    # else:
+    #     print('no')
+
 
 @app.route("/blog/<string:slug>", methods=['GET'])
 def blog(slug):
@@ -36,6 +87,7 @@ def blog(slug):
             return render_template('slug.html', noSlug=True)
     else:
         print('Invaild Request')
+
 
 @app.route("/blog", methods=['GET'])
 def allblog():
@@ -51,40 +103,40 @@ def allblog():
             next_url = f'/blog?page={pageno + 1}'
             # print(next_url)
             return render_template(
-                'search.html', 
+                'search.html',
                 allblog=findallblog,
                 Markup=Markup,
                 pageno=pageno,
-                pre_url = pre_url, 
-                next_url = next_url
-                   )
+                pre_url=pre_url,
+                next_url=next_url
+            )
         elif pageno == nopages:
             findallblog = db.Blog.find({}).skip((pageno * pageno) - 1).limit(4)
             pre_url = f'/blog?page={pageno - 1}'
             next_url = "no"
             # print(next_url)
             return render_template(
-                'search.html', 
+                'search.html',
                 allblog=findallblog,
                 Markup=Markup,
                 pageno=pageno,
-                pre_url = pre_url, 
-                next_url = next_url
-                   )
+                pre_url=pre_url,
+                next_url=next_url
+            )
         else:
             findallblog = db.Blog.find({}).skip((pageno * pageno) - 1).limit(4)
             pre_url = f'/blog?page={pageno - 1}'
             next_url = f'/blog?page={pageno + 1}'
             # print(next_url)
             return render_template(
-                'search.html', 
+                'search.html',
                 allblog=findallblog,
                 Markup=Markup,
                 pageno=pageno,
-                pre_url = pre_url, 
-                next_url = next_url
-                   )
-        #Last Page
+                pre_url=pre_url,
+                next_url=next_url
+            )
+        # Last Page
         # elif pageno == nopages:
         #     findallblog = db.Blog.find({}).skip((pageno * pageno) - 1).limit(4)
         #     return render_template('search.html', allblog=findallblog, Markup=Markup, pageno=pageno)
@@ -93,6 +145,7 @@ def allblog():
         #     return render_template('search.html', allblog=findallblog, Markup=Markup)
         # else:
         #     return print('no page')
+
 
 # Runing app
 if __name__ == '__main__':
