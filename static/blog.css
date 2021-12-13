@@ -72,7 +72,7 @@ h4:hover {
 @media only screen and (max-width: 1042px) {
     .blogs {
         display: grid;
-        grid-template-columns: auto auto;
+        grid-template-columns: 50% 50%;
     }
     .card{
         height: 310px;

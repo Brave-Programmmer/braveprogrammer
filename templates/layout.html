@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .footer{
+
+            justify-content: space-around;
+            display: flex;
+            flex-direction:row ;
+        }
+        .link{
+            display: flex;
+            flex-direction: row;
+            list-style: none;
+        }
+        .link li{
+            cursor: pointer;
+            margin:10px;
+            text-align: center;
+            align-self: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <nav>
+            <div class="head">
+                <h2 class="brand" onclick="location.href = '/'">Brave Programmer</h2>
+                <div class="burger">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+            </div>
+            <div class="navnext">
+                <ul>
+                    <li onclick="location.href = '/'">Home</li>
+                    <li onclick="location.href = '/'">About</li>
+                    <li onclick="location.href = '/blog?page=1'">Blog</li>
+                    <!-- <li onclick="location.href = '/'">Video</li> -->
+                </ul>
+
+                <div class="btn">
+                    <form action="/search" method="POST" class="searchform">
+
+                        <input type="text" name="searchtext" id="searchtext" placeholder="Search Blog">
+                        <button class="btnb">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+    </div>
+    {% block body %}
+    {% endblock %}
+
+    <footer>
+        <div class="footer">
+            <div class="branding">
+                <p style="font-size:24px">Brave Programmer</p>
+            </div>
+            <div class="link">
+                <li>Home</li>
+                <li>Blog</li>
+                <li>About</li>
+
+            </div>
+        </div>
+    </footer>
+    <noscript>
+        <h1>Please enable javascript</h1>
+    </noscript>
+</body>
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+
+</html>

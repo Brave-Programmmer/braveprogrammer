@@ -15,10 +15,9 @@ def home():
 @app.route('/search', methods=['GET', 'POST'])
 def onsearch():
     if request.method == 'POST':
-        find = db.Blog.find(
-            {"title": {"$regex": request.form.get('searchtext')}})
+        find = db.Blog.find({"contain": {"$regex": request.form.get('searchtext')}})
         if find:
-            return render_template('search.html', noblog=False, blog=find)
+            return render_template('search.html', noblog=False, allblog=find)
         else:
             return render_template('search.html', noblog=True)
 

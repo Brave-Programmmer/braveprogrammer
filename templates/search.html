@@ -5,86 +5,67 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='blog.css') }}">
     <title>Document</title>
 
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='blog.css') }}">
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='searchblog.css') }}"> -->
 </head>
-
 <body>
-    <div class="nav">
-        <nav>
-            <div class="head">
-                <h2 class="brand">Brave Programmer</h2>
-                <div class="burger">
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
-                </div>
-            </div>
-            <div class="navnext">
-                <ul>
-                    <li onclick="location.href = '/'">Home</li>
-                    <li onclick="location.href = '/'">About</li>
-                    <li onclick="location.href = '/blog?page=1'">Blog</li>
-                    <li onclick="location.href = '/'">Video</li>
-                </ul>
 
-                <div class="btn">
-                    <form action="/search" method="POST" class="searchform">
-                        <input type="text" name="searchtext" id="searchtext" placeholder="Search Blog">
-                        <button class="btnb">Search</button>
-                    </form>
-                </div>
-            </div>
-        </nav>
-    </div>
-    <section class="blogs">
-        {% for doc in allblog %}
-        <div class="card" onclick="location.href = '/blog/{{doc.slug}}'">
-            <div class="card_img">
-                <h3>Brave <br> Programmer</h3>
-                <h5>By Mohit</h5>
-            </div>
-            <div class="card_body">
-                <h4 class="card_title">
-                    <b>{{doc.title}}</b>
-                </h4>
-                <p class="card_author">
-                    Author: {{doc.author}}
-                </p>
-            </div>
+{% extends "layout.html" %}
+{% block body %}
+<section class="blogs">
+    {% for doc in allblog %}
+    <div class="card" onclick="location.href = '/blog/{{doc.slug}}'">
+        <div class="card_img">
+            <h3>Brave <br> Programmer</h3>
+            <h5>By Mohit</h5>
         </div>
-        {% endfor %}
-    </section>
-    <div class="loadmore">
-        <div class="next">
-            {% if pre_url == "no" %}
-            <button class="pagebtn1" disabled=True onclick="location.href = '{{pre_url}}'">
-                &lArr; Previous
-            </button>
-            {% else %}
-            <button class="pagebtn" onclick="location.href = '{{pre_url}}'">
-                &lArr; Previous
-            </button>
-            {% endif %}
-
-        </div>
-        <div class="before">
-            {% if next_url == "no" %}
-            <button class="pagebtn1" disabled=True onclick="location.href = '{{next_url}}'">
-                Next &rArr;
-            </button>
-            {% else %}
-
-            <button class="pagebtn" onclick="location.href = '{{next_url}}'">
-                Next &rArr;
-            </button>
-
-            {% endif %}
-
+        <div class="card_body">
+            <h4 class="card_title">
+                <b>{{doc.title}}</b>
+            </h4>
+            <p class="card_author">
+                Author: {{doc.author}}
+            </p>
         </div>
     </div>
+    {% endfor %}
+</section>
+<div class="loadmore">
+    <div class="next">
+        {% if pre_url == "no" %}
+        <button class="pagebtn1" disabled=True onclick="location.href = '{{pre_url}}'">
+            &lArr; Previous
+        </button>
+        {% else %}
+        <button class="pagebtn" onclick="location.href = '{{pre_url}}'">
+            &lArr; Previous
+        </button>
+        {% endif %}
+
+    </div>
+    <div class="before">
+        {% if next_url == "no" %}
+        <button class="pagebtn1" disabled=True onclick="location.href = '{{next_url}}'">
+            Next &rArr;
+        </button>
+        {% else %}
+
+        <button class="pagebtn" onclick="location.href = '{{next_url}}'">
+            Next &rArr;
+        </button>
+
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}
+
+<noscript>
+    <h1>Please enable javascript</h1>
+</noscript>
 </body>
 <script src="{{ url_for('static', filename='app.js') }}"></script>
 

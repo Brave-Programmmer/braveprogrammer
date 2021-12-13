@@ -7,59 +7,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='searchblog.css') }}">
 </head>
 
 <body>
-    <div class="nav">
-        <nav>
-            <div class="head">
-                <h2 class="brand">Brave Programmer</h2>
-                <div class="burger">
-                    <div class="line"></div>
-                    <div class="line"></div>
-                    <div class="line"></div>
-                </div>
-            </div>
-            <div class="navnext">
-                <ul>
-                    <li onclick="location.href = '/'">Home</li>
-                    <li onclick="location.href = '/'">About</li>
-                    <li onclick="location.href = '/blog?from=0&to=4'">Blog</li>
-                    <li onclick="location.href = '/'">Video</li>
-                </ul>
-
-                <div class="btn">
-                    <form action="/search" method="POST" class="searchform">
-
-                        <input type="text" name="searchtext" id="searchtext" placeholder="Search Blog">
-                        <button class="btnb">Search</button>
-                    </form>
-                </div>
-            </div>
-        </nav>
-    </div>
-    {% if noSlug == True %}
-    <h1>No Blog</h1>
-    {% else %}
-    <section class="blog">
-        <div class="container">
-            {% for doc in data %}
-            <div class="title">
-                <h1>{{doc.title}}</h1>
-                <h4>
-                    - By{{doc.author}}
-                </h4>
-            </div>
-            <p>
-                {{Markup(doc.contain)}}
-            </p>
-            {%endfor%}
+{% extends "layout.html" %}
+{% block body %}
+{% if noSlug == True %}
+<h1>No Blog</h1>
+{% else %}
+<section class="blog">
+    <div class="container">
+        {% for doc in data %}
+        <div class="title">
+            <h1>{{doc.title}}</h1>
+            <h4>
+                - By{{doc.author}}
+            </h4>
         </div>
-    </section>
-    {% endif %}
-    <noscript>
-        <h1>Please enable javascript</h1>
-    </noscript>
+        <p>
+            {{Markup(doc.contain)}}
+        </p>
+        {%endfor%}
+    </div>
+</section>
+{% endif %}
+{% endblock %}
+
+<noscript>
+    <h1>Please enable javascript</h1>
+</noscript>
 </body>
 <script src="{{ url_for('static', filename='app.js') }}"></script>
 

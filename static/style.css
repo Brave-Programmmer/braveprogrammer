@@ -1,5 +1,6 @@
 :root {
-    --baseblue: rgb(75, 75, 255);
+    /* --baseblue: rgb(75, 75, 255); */
+    --baseblue: #524e4e;
 }
 
 body {
@@ -119,7 +120,7 @@ nav {
 }
 
 .btn button {
-    border-radius: 25px;
+    border-radius: 0px;
     color: var(--baseblue);
     border: 2px solid var(--baseblue);
     margin-left: 6px;
@@ -138,7 +139,7 @@ nav {
 
 #searchtext {
     /* text-align: center; */
-    border-radius: 20px;
+    border-radius: 0px;
     width: auto;
     height: 18px;
     outline: none;
