@@ -1,6 +1,20 @@
 :root {
     /* --baseblue: rgb(75, 75, 255); */
     --baseblue: #524e4e;
+    --bg: rgb(190, 190, 211);
+}
+
+.button {
+    border-radius: 0px;
+    color: var(--baseblue);
+    border: 2px solid var(--baseblue);
+    margin-left: 6px;
+    padding: 10px 30px;
+}
+.button:hover{
+    color: white;
+    border: 2px solid var(--baseblue);
+    background-color: var(--baseblue);
 }
 
 body {
@@ -136,6 +150,7 @@ nav {
 }
 
 #searchtext {
+    background-color: transparent;
     /* text-align: center; */
     border-radius: 0px;
     width: auto;
@@ -159,7 +174,7 @@ nav {
         /* opacity: 100% !important;
         height: 190px !important; */
     }
-    
+
     #searchtext {
         margin-bottom: 18px;
     }

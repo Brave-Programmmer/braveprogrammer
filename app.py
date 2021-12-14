@@ -13,7 +13,24 @@ collection = db.Blog
 @app.route("/")
 def home():
     find = db.Blog.find({}).limit(4)
-    return render_template('index.html', allblog = find)
+    return render_template('index.html', allblog=find)
+
+
+@app.route('/admin', methods=['GET', 'POST'])
+def admin():
+    if request.method == 'POST':
+            username = request.form.get('username')
+            password = request.form.get('password')
+            if username and password:
+                auth = db.user.find_one({'username':username, 'password': password})
+                if auth:
+                    return render_template('admin.html', loggedin = True, username = username, password = password)
+                else:
+                    return print('Error Auth')
+    elif request.method == 'GET':
+        return render_template('admin.html')
+    else:
+        return print('Errror')
 
 
 @app.route('/search', methods=['GET', 'POST'])
@@ -74,7 +91,6 @@ def onsearch():
     # else:
     #     print('no')
 
-
 @app.route("/blog/<string:slug>", methods=['GET'])
 def blog(slug):
     print(request.method)
@@ -87,7 +103,6 @@ def blog(slug):
             return render_template('slug.html', noSlug=True)
     else:
         print('Invaild Request')
-
 
 @app.route("/blog", methods=['GET'])
 def allblog():
@@ -145,7 +160,6 @@ def allblog():
         #     return render_template('search.html', allblog=findallblog, Markup=Markup)
         # else:
         #     return print('no page')
-
 
 # Runing app
 if __name__ == '__main__':
