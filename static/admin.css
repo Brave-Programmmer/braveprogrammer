@@ -1,3 +1,40 @@
+/* .mainpanel{
+    width: 100%;
+    height: 100%;
+    background-color: white;
+} */
+.underline {
+    text-decoration: none;
+    position: relative;
+}
+
+.underline:after {
+    position: absolute;
+    content: '';
+    height: 2px;
+    bottom: -4px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    width: 15%;
+    background: var(--baseblue);
+    -o-transition: .5s;
+    -ms-transition: .5s;
+    -moz-transition: .5s;
+    -webkit-transition: .5s;
+    transition: .5s;
+}
+
+.underline:hover:after {
+    width: 20%;
+    background: var(--baseblue);
+}
+h2{
+    /* border-bottom: 2px solid var(--baseblue); */
+    padding-bottom:7px ;
+    text-align: center;
+    color: var(--baseblue);
+}
 .form form{
     display: flex;
     flex-direction: column;
@@ -5,6 +42,10 @@
 .form .button{
     width: 100px;
     margin-left: 0px;
+    background-color: transparent;
+}
+.form .button:hover{
+    background-color: var(--baseblue);
 }
 .form input{
     outline: none;

@@ -8,21 +8,55 @@
     <title>Document</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
 </head>
 
-<body>
+{% if loggedin == True %}
+
+<body style="background-color: #eee">
+    <div class="mainpanel">
+        <div class="titlebar">
+            <h2 class="underline">Brave Programmer Admin Panel</h2>
+        </div>
+        <div class="toolbar">
+            <button>
+                &plus;
+            </button>
+        </div>
+        <div class="allblog">
+            {% for doc in allblog %}
+            <div class="card" onclick="location.href = '/blog/{{doc.slug}}'">
+                <!-- <div class="card_img">
+                    <h3>Brave <br> Programmer</h3>
+                    <h5>By Mohit</h5>
+                </div> -->
+                <div class="card_body">
+                    <h4 class="card_title">
+                        <b>{{doc.title}}</b>
+                    </h4>
+                    <p class="card_author">
+                        Author: {{doc.author}}
+                    </p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% else %}
+    <body>
     {% extends "layout.html" %}
     {% block body %}
-        <div class="form">
-            <form action="/admin" method="POST">
-                <input type="text" name="username" id="username" placeholder="Enter Username">
-                <input type="password" name="password" id="password" placeholder="Enter Password">
-                <button class="button">
-                    Login
-                </button>
-            </form>
-        </div>
+    <div class="form">
+        <form action="/admin" method="POST">
+            <input type="text" name="username" id="username" placeholder="Enter Username">
+            <input type="password" name="password" id="password" placeholder="Enter Password">
+            <button class="button">
+                Login
+            </button>
+        </form>
+    </div>
     {% endblock %}
 </body>
+{% endif %}
 
 </html>

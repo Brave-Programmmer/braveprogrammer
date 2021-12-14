@@ -6,7 +6,7 @@ app = Flask(__name__)
 client = pymongo.MongoClient('mongodb://localhost:27017/')
 db = client.pro_programmer
 collection = db.Blog
-
+loggedin =False
 # Routes
 
 
@@ -19,16 +19,19 @@ def home():
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
     if request.method == 'POST':
-            username = request.form.get('username')
-            password = request.form.get('password')
-            if username and password:
-                auth = db.user.find_one({'username':username, 'password': password})
-                if auth:
-                    return render_template('admin.html', loggedin = True, username = username, password = password)
-                else:
-                    return print('Error Auth')
+        username = request.form.get('username')
+        password = request.form.get('password')
+        if username and password:
+            auth = db.user.find_one(
+                {'username': username, 'password': password})
+            if auth:
+                return render_template('admin.html', loggedin=True, username=username, password=password)
+            else:
+                return print('Error Auth')
     elif request.method == 'GET':
-        return render_template('admin.html')
+
+    # print(loggedin)
+        return render_template('admin.html', loggedin=False)
     else:
         return print('Errror')
 
@@ -37,12 +40,14 @@ def admin():
 def onsearch():
     if request.method == 'POST':
         pageno = int(request.args.get('page'))  # Current Page eg 2
-        noblogs = db.Blog.count_documents({"contain": {"$regex": request.form.get('searchtext')}})  # Total no of blogs 16
+        noblogs = db.Blog.count_documents(
+            {"contain": {"$regex": request.form.get('searchtext')}})  # Total no of blogs 16
         nopages = math.ceil(noblogs/4)  # no of pages can be made 4
         print(nopages)
         # first page
         if pageno == 1:
-            findallblog = db.Blog.find({"contain": {"$regex": request.form.get('searchtext')}}).skip((pageno * pageno) - 1).limit(4)
+            findallblog = db.Blog.find({"contain": {"$regex": request.form.get(
+                'searchtext')}}).skip((pageno * pageno) - 1).limit(4)
             pre_url = "no"
             next_url = f'/blog?page={pageno + 1}'
             # print(next_url)
@@ -91,6 +96,7 @@ def onsearch():
     # else:
     #     print('no')
 
+
 @app.route("/blog/<string:slug>", methods=['GET'])
 def blog(slug):
     print(request.method)
@@ -103,6 +109,7 @@ def blog(slug):
             return render_template('slug.html', noSlug=True)
     else:
         print('Invaild Request')
+
 
 @app.route("/blog", methods=['GET'])
 def allblog():
@@ -160,6 +167,7 @@ def allblog():
         #     return render_template('search.html', allblog=findallblog, Markup=Markup)
         # else:
         #     return print('no page')
+
 
 # Runing app
 if __name__ == '__main__':
