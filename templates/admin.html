@@ -19,10 +19,13 @@
             <h2 class="underline">Brave Programmer Admin Panel: {{username}}</h2>
         </div>
         <div class="toolbar">
-            <button class="add">
+            <button class="add" onclick="location.href = '/admin/create?username={{username}}&password={{password}}'">
                 &plus; New Blog
             </button>
         </div>
+        <!-- <div id="editor">
+            <p>Here goes the initial content of the editor.</p>
+        </div> -->
         <div class="allblog">
             {% for doc in allblog %}
             <div class="card" onclick="location.href = '/blog/{{doc.slug}}'">
@@ -40,10 +43,10 @@
                 </div>
                 <div class="tools">
                     <div class="edit">
-                        <button>Edit</button>
+                        <button><span>&#9997;</span></button>
                     </div>
                     <div class="delete">
-                        <button>&bi</button>
+                        <button><span>&#10060;</span></button>
                     </div>
                 </div>
             </div>

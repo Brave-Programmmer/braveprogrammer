@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, Markup
+from flask import Flask, render_template, request, Markup, url_for,redirect
 import math
 import pymongo
 
@@ -35,7 +35,45 @@ def admin():
         return render_template('admin.html', loggedin=False)
     else:
         return print('Errror')
+        
+@app.route('/admin/create', methods=['GET', 'POST'])
+def create():
+    if request.method == 'POST':
+        username = request.args.get('username')
+        password = request.args.get('password')
+        if username and password:
+            auth = db.user.find_one(
+                {'username': username, 'password': password})
+            if auth:
+                title = request.form.get('title')
+                desc = request.form.get('desc')
+                author = request.form.get('author')
+                author = request.form.get('author') 
+                slug = request.form.get('slug') 
+                add = db.Blog.insert_one({
+                    'title':title,
+                    'contain':desc,
+                    'author':author,
+                    'slug':slug
+                    })
+                if add:
+                    return redirect(url_for("admin"))
+            else:
+                return render_template('admin.html', loggedin='Invalid')
 
+    elif request.method == 'GET':
+        username = request.args.get('username')
+        password = request.args.get('password')
+        if username and password:
+            auth = db.user.find_one(
+                {'username': username, 'password': password})
+            if auth:
+                return render_template('create.html', loggedin=True, username=username, password=password)
+            else:
+                return render_template('admin.html', loggedin='Invalid')
+        return render_template('admin.html', loggedin=False)
+    else:
+        return print('Errror')
 
 @app.route('/search', methods=['GET', 'POST'])
 def onsearch():

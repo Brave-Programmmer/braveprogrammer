@@ -24,25 +24,30 @@
     width: 20%;
     background: var(--baseblue);
 }
-h2{
+
+h2 {
     /* border-bottom: 2px solid var(--baseblue); */
-    padding-bottom:7px ;
+    padding-bottom: 7px;
     text-align: center;
     color: var(--baseblue);
 }
-.form form{
+
+.form form {
     display: flex;
     flex-direction: column;
 }
-.form .button{
+
+.form .button {
     width: 100px;
     margin-left: 0px;
     background-color: transparent;
 }
-.form .button:hover{
+
+.form .button:hover {
     background-color: var(--baseblue);
 }
-.form input{
+
+.form input {
     outline: none;
     padding: 10px;
     width: 400px;
@@ -51,7 +56,8 @@ h2{
     font-size: 18px;
     border: 2px solid var(--baseblue);
 }
-.form{
+
+.form {
     display: flex;
     /* margin-top: 59px; */
     align-items: center;
@@ -59,7 +65,8 @@ h2{
     height: 100vh;
     width: 100%;
 }
-.add{
+
+.add {
     color: var(--baseblue);
     padding: 0px;
     text-align: center;
@@ -73,11 +80,76 @@ h2{
     margin-bottom: 10px;
     box-shadow: rgb(50 50 93 / 25%) 0px 30px 60px -12px, rgb(0 0 0 / 30%) 0px 18px 36px -18px;
 }
-.add:hover{
+
+.add:hover {
     color: white;
     background-color: var(--baseblue);
 }
-.toolbar{
+
+.toolbar {
     display: flex;
     justify-content: center;
+}
+
+.edit button {
+    color: var(--baseblue);
+    padding: 0px;
+    text-align: center;
+    border-radius: 25px;
+    outline: none;
+    border: 2px solid var(--baseblue);
+    font-size: 23px;
+    margin-bottom: 10px;
+    box-shadow: rgb(50 50 93 / 25%) 0px 30px 60px -12px, rgb(0 0 0 / 30%) 0px 18px 36px -18px;
+}
+
+.edit button:hover {
+    color: white;
+    background-color: var(--baseblue);
+}
+
+.edit button span {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    font-size: 23px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.delete button {
+    color: var(--baseblue);
+    padding: 0px;
+    text-align: center;
+    border-radius: 25px;
+    outline: none;
+    border: 2px solid var(--baseblue);
+    font-size: 23px;
+    margin-bottom: 10px;
+    box-shadow: rgb(50 50 93 / 25%) 0px 30px 60px -12px, rgb(0 0 0 / 30%) 0px 18px 36px -18px;
+}
+
+.delete button:hover {
+    color: white;
+    background-color: var(--baseblue);
+}
+
+.delete button span {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    font-size: 23px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tools {
+    display: flex;
+    flex-direction: row;
+}
+
+.edit {
+    margin-right: 10px;
 }
