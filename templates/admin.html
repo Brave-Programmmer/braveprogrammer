@@ -16,11 +16,11 @@
 <body style="background-color: #eee">
     <div class="mainpanel">
         <div class="titlebar">
-            <h2 class="underline">Brave Programmer Admin Panel</h2>
+            <h2 class="underline">Brave Programmer Admin Panel: {{username}}</h2>
         </div>
         <div class="toolbar">
-            <button>
-                &plus;
+            <button class="add">
+                &plus; New Blog
             </button>
         </div>
         <div class="allblog">
@@ -38,25 +38,50 @@
                         Author: {{doc.author}}
                     </p>
                 </div>
+                <div class="tools">
+                    <div class="edit">
+                        <button>Edit</button>
+                    </div>
+                    <div class="delete">
+                        <button>&bi</button>
+                    </div>
+                </div>
             </div>
             {% endfor %}
         </div>
     </div>
-    {% else %}
-    <body>
-    {% extends "layout.html" %}
-    {% block body %}
+    {% elif loggedin == 'Invalid'%}
+    <div class="titlebar">
+        <h2 class="underline">Brave Programmer Admin Panel</h2>
+    </div>
     <div class="form">
         <form action="/admin" method="POST">
-            <input type="text" name="username" id="username" placeholder="Enter Username">
-            <input type="password" name="password" id="password" placeholder="Enter Password">
+            <h2>Login In</h2>
+            <h2>Invalid Credentials</h2>
+            <input type="text" name="username" id="username" placeholder="Enter Username" required>
+            <input type="password" name="password" id="password" placeholder="Enter Password" required>
             <button class="button">
                 Login
             </button>
         </form>
     </div>
-    {% endblock %}
-</body>
-{% endif %}
+    {% else %}
+
+    <body>
+        <div class="titlebar">
+            <h2 class="underline">Brave Programmer Admin Panel</h2>
+        </div>
+        <div class="form">
+            <form action="/admin" method="POST">
+                <h2>Login In</h2>
+                <input type="text" name="username" id="username" placeholder="Enter Username" required>
+                <input type="password" name="password" id="password" placeholder="Enter Password" required>
+                <button class="button">
+                    Login
+                </button>
+            </form>
+        </div>
+    </body>
+    {% endif %}
 
 </html>

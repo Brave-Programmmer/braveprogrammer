@@ -6,7 +6,7 @@ app = Flask(__name__)
 client = pymongo.MongoClient('mongodb://localhost:27017/')
 db = client.pro_programmer
 collection = db.Blog
-loggedin =False
+loggedin = False
 # Routes
 
 
@@ -25,12 +25,13 @@ def admin():
             auth = db.user.find_one(
                 {'username': username, 'password': password})
             if auth:
-                return render_template('admin.html', loggedin=True, username=username, password=password)
+                find = db.Blog.find({}).limit(6)
+                return render_template('admin.html', loggedin=True, username=username, password=password, allblog=find)
             else:
-                return print('Error Auth')
-    elif request.method == 'GET':
+                return render_template('admin.html', loggedin='Invalid')
 
-    # print(loggedin)
+    elif request.method == 'GET':
+        # print(loggedin)
         return render_template('admin.html', loggedin=False)
     else:
         return print('Errror')
