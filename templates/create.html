@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
     <style>
         .ck.ck-editor{
-            width: 800px !important;
+            width: 522px !important;
         }
         body {
             background-color: white;
@@ -25,7 +25,7 @@
     <form action="/admin/create?username={{username}}&password={{password}}" method="POST" style="display: flex;flex-direction: column; align-items: center;">
         <h2>Create Blog</h2>
         <input type="text" name="title" id="title" style="width: 500px; padding: 10px; font-size: 17px; margin-bottom: 10px; margin-top: 10px;" placeholder="Enter the Title" >
-        <textarea id="editor" placeholder="Type the content here!" style="width: 80%;"></textarea>
+        <textarea id="editor" name="editor" placeholder="Type the content here!" style="width: 80%;"></textarea>
         <input type="text" name="author" id="author" style="width: 500px; padding: 10px; font-size: 17px; margin-bottom: 10px; margin-top: 10px;" placeholder="Enter the Author Name" >
         <input type="text" name="slug" id="slug" style="width: 500px; padding: 10px; font-size: 17px; margin-bottom: 10px; margin-top: 10px;" placeholder="Enter the Slug" >
         <button class="button" style="margin-top: 10px; width: 100px;">Create</button>

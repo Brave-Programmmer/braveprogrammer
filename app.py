@@ -46,7 +46,7 @@ def create():
                 {'username': username, 'password': password})
             if auth:
                 title = request.form.get('title')
-                desc = request.form.get('desc')
+                desc = request.form.get('editor')
                 author = request.form.get('author')
                 author = request.form.get('author') 
                 slug = request.form.get('slug') 
@@ -125,15 +125,6 @@ def onsearch():
                 next_url=next_url
             )
 
-    # if request.method == 'POST':
-    #     find = db.Blog.find({"contain": {"$regex": request.form.get('searchtext')}})
-    #     if find:
-    #         return render_template('search.html', noblog=False, allblog=find)
-    #     else:
-    #         return render_template('search.html', noblog=True)
-
-    # else:
-    #     print('no')
 
 
 @app.route("/blog/<string:slug>", methods=['GET'])
@@ -207,6 +198,34 @@ def allblog():
         # else:
         #     return print('no page')
 
+@app.route('/admin/delete')
+def delete():
+    username= request.args.get('username')
+    password= request.args.get('password')
+    if username and password:
+        deletename= request.args.get('slug')
+        deleteing = db.Blog.delete_one({'slug':deletename})
+        if deleteing:
+            return redirect(url_for("admin"))
+        else:
+            print('Err in deleting')
+            return redirect(url_for("blog"))
+
+@app.route('/admin/edit')
+def edit():
+    username= request.args.get('username')
+    password= request.args.get('password')
+    if username and password:
+        editname= request.args.get('slug')
+        title= request.args.get('title')
+        desc= request.args.get('desc')
+        = request.args.get('')
+        editing = db.Blog.update_one({'slug': editname})
+        if editing:
+            return redirect(url_for("admin"))
+        else:
+            print('Err in deleting')
+            return redirect(url_for("blog"))
 
 # Runing app
 if __name__ == '__main__':

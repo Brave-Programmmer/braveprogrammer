@@ -3,7 +3,12 @@
     --baseblue: #524e4e;
     --bg: rgb(190, 190, 211);
 }
-
+body {
+    background-color: white;
+    font-family: Georgia, serif;
+    margin: 0;
+    padding: 0;
+}
 .button {
     border-radius: 0px;
     color: var(--baseblue);
@@ -15,13 +20,6 @@
     color: white;
     border: 2px solid var(--baseblue);
     background-color: var(--baseblue);
-}
-
-body {
-    background-color: rgb(190, 190, 211);
-    font-family: Georgia, serif;
-    margin: 0;
-    padding: 0;
 }
 
 .nav {

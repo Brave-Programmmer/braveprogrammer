@@ -144,7 +144,9 @@ h2 {
     align-items: center;
     justify-content: center;
 }
-
+/* .ck.ck-editor {
+    width: 522px! important;
+} */
 .tools {
     display: flex;
     flex-direction: row;
@@ -152,4 +154,23 @@ h2 {
 
 .edit {
     margin-right: 10px;
+}
+.form form{
+    padding: 30px;
+    border: 2px solid var(--baseblue);
+    border-radius: 14px;
+    padding-bottom: 80px;
+    padding-top: 80px;
+}
+@media only screen and (max-width: 521px) {
+    .form form{
+        padding: 0px 10px 3px;
+        border: 2px solid var(--baseblue);
+        border-radius: 14px;
+        padding-bottom: 80px;
+        padding-top: 80px;
+    }
+    .form input{
+        width: 250px;
+    }
 }
