@@ -1,9 +1,14 @@
+# import os
 from flask import Flask, render_template, request, Markup, url_for, redirect
 import math
 import pymongo
+# from dotenv import load_dotenv
+
+# load_dotenv()
 
 app = Flask(__name__)
-client = pymongo.MongoClient('mongodb://localhost:27017/')
+# d1b = str(os.getenv('API_KEY'))
+client = pymongo.MongoClient("mongodb://localhost:27017")
 db = client.pro_programmer
 collection = db.Blog
 loggedin = False
