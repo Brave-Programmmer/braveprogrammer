@@ -9,9 +9,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='admin.css') }}">
     <style>
-        .ck.ck-editor{
+        .ck.ck-editor {
             width: 522px !important;
         }
+
         body {
             background-color: white;
         }
@@ -22,13 +23,52 @@
     {% if loggedin == True %}
     <!-- <div id="editor"> -->
     <!-- <p>Here goes the initial content of the editor.</p> -->
-    <form action="/admin/create?username={{username}}&password={{password}}" method="POST" style="display: flex;flex-direction: column; align-items: center;">
+    <form action="{% if update == True %}
+    /admin/edit?username={{username}}&password={{password}}&slug={{blog.slug}}
+    {% else %}
+        /admin/create?username={{username}}&password={{password}}
+    {% endif %}
+    " method="POST" style="display: flex;flex-direction: column; align-items: center;">
         <h2>Create Blog</h2>
-        <input type="text" name="title" id="title" style="width: 500px; padding: 10px; font-size: 17px; margin-bottom: 10px; margin-top: 10px;" placeholder="Enter the Title" >
-        <textarea id="editor" name="editor" placeholder="Type the content here!" style="width: 80%;"></textarea>
-        <input type="text" name="author" id="author" style="width: 500px; padding: 10px; font-size: 17px; margin-bottom: 10px; margin-top: 10px;" placeholder="Enter the Author Name" >
-        <input type="text" name="slug" id="slug" style="width: 500px; padding: 10px; font-size: 17px; margin-bottom: 10px; margin-top: 10px;" placeholder="Enter the Slug" >
-        <button class="button" style="margin-top: 10px; width: 100px;">Create</button>
+        {% if update ==True %}
+        <input type="text" name="title" id="title" value="{{blog.title}}"
+            style="width: 500px; padding: 10px; font-size: 17px; margin-bottom: 10px; margin-top: 10px;"
+            placeholder="Enter the Title">
+        <textarea id="editor" name="editor" placeholder="Type the content here!" style="width: 80%;">
+             {{blog.contain}}
+             </textarea>
+        <input type="text" name="author" id="author" value="{{blog.author}}"
+            style="width: 500px; padding: 10px; font-size: 17px; margin-bottom: 10px; margin-top: 10px;"
+            placeholder="Enter the Author Name">
+        <input type="text" name="slug" id="slug"
+            style="width: 500px; padding: 10px; font-size: 17px; margin-bottom: 10px; margin-top: 10px;"
+            value="{{blog.slug}}" placeholder="Enter the Slug">
+        {% else %}
+
+
+        <input type="text" name="title" id="title"
+            style="width: 500px; padding: 10px; font-size: 17px; margin-bottom: 10px; margin-top: 10px;"
+            placeholder="Enter the Title">
+        <textarea id="editor" name="editor" placeholder="Type the content here!" style="width: 80%;">
+
+
+
+</textarea>
+        <input type="text" name="author" id="author"
+            style="width: 500px; padding: 10px; font-size: 17px; margin-bottom: 10px; margin-top: 10px;"
+            placeholder="Enter the Author Name">
+        <input type="text" name="slug" id="slug"
+            style="width: 500px; padding: 10px; font-size: 17px; margin-bottom: 10px; margin-top: 10px;"
+            placeholder="Enter the Slug">
+
+
+        {% endif %}
+        <button class="button" style="margin-top: 10px; width: 100px;">
+            {% if update == True %}
+            Update
+            {% else %}
+            Create
+            {% endif %}</button>
     </form>
     <!-- </div> -->
     <!-- <textarea name="editor1" id="editor1">&lt;p&gt;Initial editor content.&lt;/p&gt;</textarea> -->

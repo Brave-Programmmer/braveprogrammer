@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, Markup, url_for,redirect
+from flask import Flask, render_template, request, Markup, url_for, redirect
 import math
 import pymongo
 
@@ -35,7 +35,8 @@ def admin():
         return render_template('admin.html', loggedin=False)
     else:
         return print('Errror')
-        
+
+
 @app.route('/admin/create', methods=['GET', 'POST'])
 def create():
     if request.method == 'POST':
@@ -48,13 +49,13 @@ def create():
                 title = request.form.get('title')
                 desc = request.form.get('editor')
                 author = request.form.get('author')
-                author = request.form.get('author') 
-                slug = request.form.get('slug') 
+                author = request.form.get('author')
+                slug = request.form.get('slug')
                 add = db.Blog.insert_one({
-                    'title':title,
-                    'contain':desc,
-                    'author':author,
-                    'slug':slug
+                    'title': title,
+                    'contain': desc,
+                    'author': author,
+                    'slug': slug
                     })
                 if add:
                     return redirect(url_for("admin"))
@@ -68,12 +69,13 @@ def create():
             auth = db.user.find_one(
                 {'username': username, 'password': password})
             if auth:
-                return render_template('create.html', loggedin=True, username=username, password=password)
+                return render_template('create.html', loggedin=True, username=username, password=password, update=False)
             else:
                 return render_template('admin.html', loggedin='Invalid')
         return render_template('admin.html', loggedin=False)
     else:
         return print('Errror')
+
 
 @app.route('/search', methods=['GET', 'POST'])
 def onsearch():
@@ -124,7 +126,6 @@ def onsearch():
                 pre_url=pre_url,
                 next_url=next_url
             )
-
 
 
 @app.route("/blog/<string:slug>", methods=['GET'])
@@ -198,34 +199,60 @@ def allblog():
         # else:
         #     return print('no page')
 
+
 @app.route('/admin/delete')
 def delete():
-    username= request.args.get('username')
-    password= request.args.get('password')
+    username = request.args.get('username')
+    password = request.args.get('password')
     if username and password:
-        deletename= request.args.get('slug')
-        deleteing = db.Blog.delete_one({'slug':deletename})
+        deletename = request.args.get('slug')
+        deleteing = db.Blog.delete_one({'slug': deletename})
         if deleteing:
             return redirect(url_for("admin"))
         else:
             print('Err in deleting')
             return redirect(url_for("blog"))
 
-@app.route('/admin/edit')
+
+@app.route('/admin/edit', methods=['GET', 'POST'])
 def edit():
-    username= request.args.get('username')
-    password= request.args.get('password')
-    if username and password:
-        editname= request.args.get('slug')
-        title= request.args.get('title')
-        desc= request.args.get('desc')
-        = request.args.get('')
-        editing = db.Blog.update_one({'slug': editname})
-        if editing:
-            return redirect(url_for("admin"))
+    if request.method == 'POST':
+        username = request.args.get('username')
+        password = request.args.get('password')
+        if username and password:
+            slug = request.args.get('slug')
+            editname = request.form.get('slug')
+            title = request.form.get('title')
+            desc = request.form.get('editor')
+            author = request.form.get('author')
+            # slug = request.args.get('slug')
+            editing = db.Blog.update_one({
+                'slug': slug
+            },{
+                '$set':{
+                "title": title,
+                "contain": desc,
+                "author": author,
+                'slug': editname
+            }})
+            if editing:
+                return redirect(url_for("admin"))
+            else:
+                print('Err in deleting')
+                return redirect(url_for("blog"))
         else:
-            print('Err in deleting')
+            return print('123')
+    elif request.method == 'GET':
+        username = request.args.get('username')
+        password= request.args.get('password')
+        slug= request.args.get('slug')
+        blog = db.Blog.find_one({'slug':slug},{'_id':0})
+        if username and password:
+            return render_template('create.html' , loggedin=True, username=username, password=password, update=True, blog = blog)
+        else:
             return redirect(url_for("blog"))
+    else:
+        return redirect(url_for("blog"))
 
 # Runing app
 if __name__ == '__main__':

@@ -43,10 +43,10 @@
                 </div>
                 <div class="tools">
                     <div class="edit">
-                        <button><span>&#9997;</span></button>
+                        <button onclick="location.href = '/admin/edit?slug={{doc.slug}}&username={{username}}&password={{password}}'"><span>&#9997;</span></button>
                     </div>
                     <div class="delete">
-                        <button onclick="location.href = '/admin/delete?slug={{doc.slug}}'"><span>&#10060;</span></button>
+                        <button onclick="location.href = '/admin/delete?slug={{doc.slug}}&username={{username}}&password={{password}}'"><span>&#10060;</span></button>
                     </div>
                 </div>
             </div>
