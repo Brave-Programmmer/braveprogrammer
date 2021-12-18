@@ -16,7 +16,7 @@ loggedin = False
 # Routes
 
 
-@app.route("/")
+@app.route("/",method=['GET'])
 def home():
     find = db.Blog.find({}).limit(4)
     return render_template('index.html', allblog=find)
