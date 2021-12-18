@@ -262,4 +262,4 @@ def edit():
 
 # Runing app
 if __name__ == '__main__':
-    app.run(debug=Flase)
+    app.run(debug=False)
