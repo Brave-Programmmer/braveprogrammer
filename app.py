@@ -8,7 +8,7 @@ import pymongo
 
 app = Flask(__name__)
 # d1b = str(os.getenv('API_KEY'))
-client = pymongo.MongoClient("mongodb://localhost:27017")
+client = pymongo.MongoClient(urllib.parse.quote_plus("mongodb+srv://MohitBloging:passwordcracked@cluster0.trzwe.mongodb.net/pro_programmer?retryWrites=true&w=majority"))
 db = client.pro_programmer
 collection = db.Blog
 loggedin = False
