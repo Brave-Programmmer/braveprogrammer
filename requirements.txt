@@ -10,7 +10,7 @@ pycodestyle==2.8.0
 pymongo==3.12.1 
 python-dotenv==0.19.2 
 toml==0.10.2
-Werkzeug==2.0.2
+Werkzeug==2.2.3
 Dnspython==2.1.0
 urllib3==1.25.9 
 uwsgi
